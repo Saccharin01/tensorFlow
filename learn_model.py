@@ -45,6 +45,6 @@ define_model = model.Sequential([
 define_model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 # 모델 학습
 learn_log = define_model.fit(X, y, epochs=50, batch_size=16, validation_split=0.2)
-
+define_model.save("athlete_model.keras")
 
 plot_history(learn_log)
