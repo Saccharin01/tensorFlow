@@ -1,7 +1,7 @@
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import tensorflow as tf
 
 # 이미지 데이터를 폴더에서 불러오기
-datagen = ImageDataGenerator(rescale=1./255)
+datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 
 train_generator = datagen.flow_from_directory(
     'train/',  # 학습 이미지가 저장된 폴더
@@ -11,4 +11,4 @@ train_generator = datagen.flow_from_directory(
 )
 
 # 모델 학습
-history = model.fit(train_generator, epochs=10)
+history = tf.keras.model.fit(train_generator, epochs=10)
