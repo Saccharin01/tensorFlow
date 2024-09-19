@@ -17,7 +17,7 @@ if not os.path.exists(images_dir):
     os.makedirs(images_dir)
 
 # 4. 페이지 순회
-page_number = 41
+page_number = 0
 pagination_step = 1  # 페이지네이션 단위 설정
 
 while True:
@@ -105,7 +105,7 @@ while True:
     del soup, athlete_cards  # 더 이상 필요 없는 객체 삭제
 
     # 요청 간 간격 설정 (예: 1초 대기)
-    time.sleep(1)
+    time.sleep(5)
 
     # 9. 최대 페이지 수 조건 추가
     if page_number >= 300:
