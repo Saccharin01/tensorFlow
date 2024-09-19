@@ -20,7 +20,7 @@ labels = []
 for entry in data:
     img_path = entry['img']
     # 이미지 로드 및 전처리
-    img = img_process.load_img(img_path, target_size=(128, 128))  # 이미지 크기 조정
+    img = img_process.load_img(img_path, target_size=(128, 256))  # 이미지 크기 조정
     img_array = img_process.img_to_array(img) / 255.0  # 정규화
     images.append(img_array)
 
