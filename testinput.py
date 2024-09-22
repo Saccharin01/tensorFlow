@@ -20,5 +20,12 @@ processed_image = preprocess_image(image_path)
 # 4. 모델을 통해 예측 수행
 predictions = model.predict(processed_image)
 
+resultObj = {
+  "attack": predictions[0][0],
+  "defense" : predictions[0][1],
+  "accuarcy" : predictions[0][2]
+}
+
+
 # 5. 예측 결과 출력
-print("예측 결과:", predictions)
+print("예측 결과:", resultObj["attack"])
