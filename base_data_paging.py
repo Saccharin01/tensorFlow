@@ -70,36 +70,42 @@ while True:
                 except requests.exceptions.RequestException as e:
                     print(f"이미지 다운로드 실패: {img_url}\n{e}")
 
-            # 8.3. 선수 상세 페이지 URL 생성 및 데이터 저장
+            # 선수 상세 페이지 URL 생성 및 데이터 저장
             athlete_url = f'{base_url}/athlete/{kebab_case_name}'
             try:
                 athlete_response = requests.get(athlete_url)
                 athlete_response.raise_for_status()
 
                 athlete_soup = BeautifulSoup(athlete_response.text, 'html.parser')
+                
                 attack = athlete_soup.select_one('div.c-stat-compare__group.c-stat-compare__group-1 .c-stat-compare__number')
                 defense = athlete_soup.select_one('div.c-stat-compare__group.c-stat-compare__group-2 .c-stat-compare__number')
                 accuracy = athlete_soup.select_one('.e-chart-circle__percent')
-                bio_data = athlete_soup.find('div',class_='c-bio__row--3col')
-                
+                bio_data = athlete_soup.find('div', class_='c-bio__row--3col')
 
+                # 각 데이터의 값 추출
                 attack_value = attack.get_text(strip=True) if attack else ""
                 defense_value = defense.get_text(strip=True) if defense else ""
                 accuracy_value = accuracy.get_text(strip=True) if accuracy else ""
-                height_value = bio_data.find_all('div',class_="c-bio__text")[0].text.strip()
-                weight_value = bio_data.find_all('div',class_="c-bio__text")[1].text.strip()
 
-                # 선수 데이터 딕셔너리 생성
-                if img_path:  # 이미지가 성공적으로 다운로드되었는지 확인
-                    athlete_dict = {
-                        "img": img_path,
-                        "attack": attack_value,
-                        "defense": defense_value,
-                        "accuracy": accuracy_value,
-                        "height": height_value,
-                        "weight": weight_value
-                    }
-                    athlete_data.append(athlete_dict)
+                # bio_data가 None이 아닐 경우에만 무게 정보를 찾습니다.
+                weight_value = ""
+                if bio_data:
+                    weight_div = bio_data.find(string="무게")
+                    if weight_div:
+                        weight_value = weight_div.find_next('div', class_="c-bio__text").text.strip() if weight_div else ""
+
+                # 데이터 저장 로직
+                athlete_dict = {
+                    "species" : "person",
+                    "name": kebab_case_name,
+                    "attack": attack_value,
+                    "defense": defense_value,
+                    "accuracy": accuracy_value,
+                    "weight": weight_value,
+                }
+                
+                athlete_data.append(athlete_dict)
 
             except requests.exceptions.RequestException as e:
                 print(f"선수 페이지 요청 중 오류 발생: {athlete_url}\n{e}")
@@ -107,10 +113,6 @@ while True:
     # 페이지 번호 증가
     page_number += pagination_step  # 페이지 번호 증가 단위 설정
 
-    # 메모리 관리: 사용하지 않는 변수 삭제
-    del soup, athlete_cards  # 더 이상 필요 없는 객체 삭제
-
-    # 요청 간 간격 설정 (예: 1초 대기)
     time.sleep(5)
 
     # 9. 최대 페이지 수 조건 추가
