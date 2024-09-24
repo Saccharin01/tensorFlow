@@ -8,7 +8,7 @@ model = tf.keras.models
 layers = tf.keras.layers
 
 # JSON 파일 읽기
-with open('athletes_data.json', 'r', encoding='utf-8') as json_file:
+with open('matched_athletes_data.json', 'r', encoding='utf-8') as json_file:
     data = json.load(json_file)
 
 # 이미지와 레이블 준비
@@ -55,7 +55,7 @@ def build_model():
         layers.Flatten(),
         layers.Dense(128, activation='relu'),
         layers.Dropout(0.5),  # Dropout 추가
-        layers.Dense(3)  # 공격력, 방어력, 정확도 출력
+        layers.Dense(5)  # 공격력, 방어력, 정확도 출력
     ])
     
     model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
@@ -86,20 +86,20 @@ for train_index, test_index in kfold.split(X):
     athlete_model = build_model()
 
     # Early Stopping 설정
-    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
+    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
     
     # 모델 학습
     history = athlete_model.fit(
         train_datagen,
         steps_per_epoch=len(X_train) // 16,  # 각 에포크에서의 스텝 수
-        epochs=3,
+        epochs=10,
         validation_data=(X_test, y_test),  # 검증 데이터는 증강하지 않음
         callbacks=[early_stopping]
     )
     
     # 학습 로그 저장
     all_histories.append(history)
-    athlete_model.save(f"athlete_model_fold_{fold_no}.keras")
+    athlete_model.save(f"M{fold_no}.keras")
     
     fold_no += 1
 
@@ -107,4 +107,4 @@ for train_index, test_index in kfold.split(X):
 
 # 모든 폴드의 학습 기록 시각화
 for i, history in enumerate(all_histories):
-    plot_history(history, title=f"Fold {i + 1}")
+    plot_history(history, title=f"M{i + 1} Learning History")
