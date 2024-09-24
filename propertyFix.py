@@ -7,7 +7,9 @@ with open("athletes_data.json", "r", encoding='utf-8') as data:
     condition = json.load(data)  # JSON 데이터 로드
     for element in condition:  # condition에서 반복
         if "images\\" not in element["img"]:  # 조건 확인
-            result = {**element,"img": f'images\\{element["img"]}'}  # 새로운 딕셔너리 생성
+            result = {
+                **element,
+                "img": f'images\\{element["img"]}.png'}  # 새로운 딕셔너리 생성
             test.append(result)
         else :
           test.append(element)
