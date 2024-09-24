@@ -21,14 +21,14 @@ for layer_num in range(num_layers):
     # 가중치 분포 시각화
     plt.subplot(num_layers, 2, layer_num * 2 + 1)  # 서브플롯 생성
     plt.hist(layer_weights.flatten(), bins=50)
-    plt.title(f'Layer {layer_num + 1} Weight Distribution')
+    plt.title(f'M4 Layer No.{layer_num + 1} Weight Distribution')
     plt.xlabel('Weight Value')
     plt.ylabel('Frequency')
     
     # 편향 분포 시각화
     plt.subplot(num_layers, 2, layer_num * 2 + 2)  # 서브플롯 생성
     plt.hist(layer_bias.flatten(), bins=50)
-    plt.title(f'Layer {layer_num + 1} Bias Distribution')
+    plt.title(f'M4 Layer No.{layer_num + 1} Bias Distribution')
     plt.xlabel('Bias Value')
     plt.ylabel('Frequency')
 
