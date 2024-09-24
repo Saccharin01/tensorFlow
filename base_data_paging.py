@@ -80,10 +80,14 @@ while True:
                 attack = athlete_soup.select_one('div.c-stat-compare__group.c-stat-compare__group-1 .c-stat-compare__number')
                 defense = athlete_soup.select_one('div.c-stat-compare__group.c-stat-compare__group-2 .c-stat-compare__number')
                 accuracy = athlete_soup.select_one('.e-chart-circle__percent')
+                bio_data = athlete_soup.find('div',class_='c-bio__row--3col')
+                
 
                 attack_value = attack.get_text(strip=True) if attack else ""
                 defense_value = defense.get_text(strip=True) if defense else ""
                 accuracy_value = accuracy.get_text(strip=True) if accuracy else ""
+                height_value = bio_data.find_all('div',class_="c-bio__text")[0].text.strip()
+                weight_value = bio_data.find_all('div',class_="c-bio__text")[1].text.strip()
 
                 # 선수 데이터 딕셔너리 생성
                 if img_path:  # 이미지가 성공적으로 다운로드되었는지 확인
@@ -91,7 +95,9 @@ while True:
                         "img": img_path,
                         "attack": attack_value,
                         "defense": defense_value,
-                        "accuracy": accuracy_value
+                        "accuracy": accuracy_value,
+                        "height": height_value,
+                        "weight": weight_value
                     }
                     athlete_data.append(athlete_dict)
 
