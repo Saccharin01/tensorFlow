@@ -98,7 +98,7 @@ while True:
                 # 데이터 저장 로직
                 athlete_dict = {
                     "species" : "person",
-                    "name": kebab_case_name,
+                    "img": f'images\\{kebab_case_name}',
                     "attack": attack_value,
                     "defense": defense_value,
                     "accuracy": accuracy_value,
