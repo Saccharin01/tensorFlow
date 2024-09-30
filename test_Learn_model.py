@@ -42,7 +42,7 @@ datagen = tf.keras.preprocessing.image.ImageDataGenerator(
     height_shift_range=0.2,
     horizontal_flip=True,
     zoom_range=0.2,
-    rescale=1.0  # 정규화는 fit() 내에서 처리되므로 여기서는 1.0
+    rescale=1.0 
 )
 
 # 모델 정의 함수
