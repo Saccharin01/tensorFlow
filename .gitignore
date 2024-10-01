@@ -5,3 +5,4 @@ __pycache__/
 images/
 htmlStorage/
 athletes_data.json
+*.keras
