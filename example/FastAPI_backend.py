@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from modules.model_loader import load_model
-from modules.preprocess import model_predict  # model_predict 함수를 import
+from modules.FastAPI_preprocess import model_predict  # model_predict 함수를 import
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
