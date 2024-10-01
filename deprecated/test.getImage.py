@@ -2,7 +2,7 @@ import json
 import numpy as np
 import tensorflow as tf
 from sklearn.model_selection import KFold
-from visualize import plot_history
+from modules.visulaize_history import plot_history
 
 model = tf.keras.models
 layers = tf.keras.layers
