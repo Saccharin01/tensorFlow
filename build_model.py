@@ -15,7 +15,7 @@ def build_model(dropout_rate: float = 0.5, input_shape: Tuple[int, int, int] = (
         tf.keras.Model: 구성된 Keras 모델 인스턴스입니다.
     """
     
-    layers = tf.keras
+    layers = tf.keras.layers
     model = tf.keras.Sequential([
         layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
         layers.MaxPooling2D(pool_size=(2, 2)),
