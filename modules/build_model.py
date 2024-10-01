@@ -3,7 +3,7 @@ from typing import Tuple
 
 def build_model(dropout_rate: float = 0.5, input_shape: Tuple[int, int, int] = (128, 256, 3), output_layer: int = 5) -> tf.keras.Model:
     """
-    TensorFlow를 이용해 CNN 모델을 생성하는 함수입니다.
+    todo TensorFlow를 이용해 CNN 모델을 생성하는 함수입니다.
 
     * Args:
         ? dropout_rate (float, optional): 드롭아웃 레이어의 비율로, 과적합을 방지하기 위해 사용됩니다. 기본값은 0.5입니다.

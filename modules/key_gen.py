@@ -4,12 +4,11 @@ from typing import List, Optional
 
 def key_gen(json_path : str, remove_key : Optional[str]=None) -> List[str]:
     """
-    JSON 파일에서 특정 키를 제거한 나머지 키를 추출하는 함수입니다.
-    remove_key의 값이 전달되지 않으면 json 데이터의 모든 key 값을 반환합니다.
+    todo JSON 파일에서 특정 키를 제거한 나머지 키를 추출하는 함수입니다. remove_key의 값이 전달되지 않으면 json 데이터의 모든 key 값을 반환합니다.
 
     * Args:
-        json_path (str): JSON 파일의 경로
-        remove_key (str): 제거할 키의 이름
+        ? json_path (str): JSON 파일의 경로
+        ? remove_key (str): 제거할 키의 이름
 
     * Returns:
         List[str]: 제거된 키를 제외한 나머지 키 목록
