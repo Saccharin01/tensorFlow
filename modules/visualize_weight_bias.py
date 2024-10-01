@@ -1,14 +1,14 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-def weight_bias_visualize(model_path : str):
+def visualize_weight_bias(model_path : str):
     
     """
-    학습된 모델 파일의 가중치와 편향치 분포를 그래프로 표시해주는 함수입니다.
+    todo 학습된 모델 파일의 가중치와 편향치 분포를 그래프로 표시해주는 함수입니다.
     사전에 학습이 완료된 모델 파일이 필요합니다.
     
     * Arg:
-      model_path
+      ? model_path
       모델 파일의 경로입니다.
       
     """
