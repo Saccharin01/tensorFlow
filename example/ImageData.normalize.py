@@ -8,8 +8,7 @@ imglocation = "./images/hamdy-abdelwahab.png"
 def imageDataNormalize(image_path, save_file_name = "image.normalize.json", resize = (128,256)):
  
     """
-    이미지를 정규화 한 데이터를 시각화 하는 함수입니다.
-    이 함수를 통해 전처리 및 정규화 된 이미지는 json Array 형식으로 저장됩니다.
+    todo 이미지를 정규화 한 데이터를 시각화 하는 함수입니다. 이 함수를 통해 전처리 및 정규화 된 이미지는 json Array 형식으로 저장됩니다.
 
     * Args:
         ? img_path
